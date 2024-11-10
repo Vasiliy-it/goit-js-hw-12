@@ -17,9 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let loadedHits = 0;
   let query = '';
 
-  // Функция для обработки поиска изображений
   const handleSearchImages = async () => {
-    startLoader();  // Показать лоадер
+    startLoader();  
 
     try {
       const { images, totalHits: total } = await searchImages(query, page);
@@ -62,11 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
         position: 'topRight',
       });
     } finally {
-      stopLoader();  // Скрыть лоадер
+      stopLoader();  
     }
   };
 
-  // Обработчик события для отправки формы
+  
   searchForm.addEventListener("submit", (event) => {
     event.preventDefault();
     query = searchInput.value.trim();
@@ -80,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Сброс состояния перед новым запросом
+    
     galleryList.innerHTML = '';
     page = 1;
     loadedHits = 0;
@@ -89,11 +88,11 @@ document.addEventListener("DOMContentLoaded", () => {
     handleSearchImages();
   });
 
-  // Обработчик события для кнопки "Load more"
+  
   loadMoreButton.addEventListener("click", async (event) => {
     event.preventDefault();
     page += 1;
-    startLoader();  // Показать лоадер
+    startLoader();  
 
     try {
       const { images } = await loadMoreImages(query, page);
@@ -119,11 +118,11 @@ document.addEventListener("DOMContentLoaded", () => {
         position: 'topRight',
       });
     } finally {
-      stopLoader();  // Скрыть лоадер
+      stopLoader();  
     }
   });
 
-  // Функция плавной прокрутки к новым изображениям
+  
   function smoothScrollToNewImages() {
     const { height: cardHeight } = galleryList.firstElementChild.getBoundingClientRect();
     window.scrollBy({
